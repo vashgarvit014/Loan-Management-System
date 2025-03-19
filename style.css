@@ -1,0 +1,162 @@
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    width: 45%;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px rgba(0, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease-in-out;
+}
+
+.container:hover {
+    box-shadow: 0px 0px 40px rgba(0, 255, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Headings */
+h1 {
+    font-size: 32px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 24px;
+    color: #ffcc00;
+    margin-top: 15px;
+    text-shadow: 0px 0px 12px rgba(255, 204, 0, 0.8);
+    font-weight: 600;
+}
+
+/* Status Box */
+.status-box {
+    background: linear-gradient(135deg, #ffcc00, #ff8800);
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0px 0px 20px rgba(255, 193, 7, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+.status-box:hover {
+    box-shadow: 0px 0px 30px rgba(255, 193, 7, 1);
+    transform: scale(1.05);
+}
+
+/* Input Fields */
+input {
+    display: block;
+    width: 85%;
+    margin: 14px auto;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus {
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.8);
+    border: 1px solid white;
+}
+
+/* Buttons */
+button {
+    display: block;
+    width: 88%;
+    margin: 14px auto;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+
+/* Borrower Section Buttons */
+#borrower-section button {
+    background: linear-gradient(135deg, #00c853, #00796b);
+    color: white;
+    box-shadow: 0px 0px 20px rgba(0, 255, 135, 0.8);
+}
+
+#borrower-section button:hover {
+    background: linear-gradient(135deg, #33cc66, #009688);
+    box-shadow: 0px 0px 30px rgba(0, 255, 135, 1);
+    transform: scale(1.08);
+}
+
+/* Lender Section Buttons */
+#lender-section button {
+    background: linear-gradient(135deg, #2979ff, #004ba0);
+    color: white;
+    box-shadow: 0px 0px 20px rgba(41, 121, 255, 0.8);
+}
+
+#lender-section button:hover {
+    background: linear-gradient(135deg, #5c99ff, #1a237e);
+    box-shadow: 0px 0px 30px rgba(41, 121, 255, 1);
+    transform: scale(1.08);
+}
+
+/* Floating Effect */
+button:active {
+    transform: scale(0.96);
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.8;
+
+}
+#connectWallet {
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 15px rgba(255, 87, 34, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+#connectWallet:hover {
+    background: linear-gradient(135deg, #ffb74d, #e64a19);
+    box-shadow: 0px 0px 25px rgba(255, 87, 34, 1);
+    transform: scale(1.05);
+}
