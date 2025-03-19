@@ -1,0 +1,79 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract LoanManagement {
+    address public lender;
+    address public borrower;
+    uint256 public loanAmount;
+    uint256 public interestRate; // Percentage (e.g., 5 for 5%)
+    uint256 public dueDate;
+    uint256 public repaidAmount;
+    bool public loanApproved;
+    
+    event LoanRequested(address indexed borrower, uint256 amount);
+    event LoanApproved(address indexed lender, uint256 amount, uint256 interestRate, uint256 dueDate);
+    event LoanRepaid(address indexed borrower, uint256 amount);
+    event LoanDefaulted(address indexed borrower);
+
+    modifier onlyLender() {
+        require(msg.sender == lender, "Only lender can perform this action");
+        _;
+    }
+
+    modifier onlyBorrower() {
+        require(msg.sender == borrower, "Only borrower can perform this action");
+        _;
+    }
+
+    constructor() {
+        lender = msg.sender; // Contract deployer is the lender
+    }
+
+    function requestLoan(uint256 _amount, uint256 _interestRate, uint256 _loanDuration) public {
+        require(!loanApproved, "Loan already approved");
+        borrower = msg.sender;
+        loanAmount = _amount;
+        interestRate = _interestRate;
+        dueDate = block.timestamp + _loanDuration;
+
+        emit LoanRequested(borrower, loanAmount);
+    }
+
+    function approveLoan() public onlyLender {
+        require(borrower != address(0), "No loan request found");
+        require(!loanApproved, "Loan already approved");
+        
+        loanApproved = true;
+        payable(borrower).transfer(loanAmount); // Transfer funds to borrower
+        
+        emit LoanApproved(lender, loanAmount, interestRate, dueDate);
+    }
+
+    function repayLoan() public payable onlyBorrower {
+        require(loanApproved, "Loan not approved yet");
+        require(block.timestamp <= dueDate, "Loan is overdue");
+
+        repaidAmount += msg.value;
+        
+        if (repaidAmount >= loanAmount + (loanAmount * interestRate / 100)) {
+            loanApproved = false; // Mark loan as fully repaid
+        }
+
+        emit LoanRepaid(borrower, msg.value);
+    }
+
+    function checkDefault() public {
+        require(block.timestamp > dueDate, "Loan is not overdue yet");
+        require(repaidAmount < loanAmount + (loanAmount * interestRate / 100), "Loan fully repaid");
+
+        emit LoanDefaulted(borrower);
+    }
+
+    function getLoanStatus() public view returns (string memory) {
+        if (!loanApproved) return "No active loan";
+        if (block.timestamp > dueDate && repaidAmount < loanAmount) return "Loan Defaulted";
+        return "Loan Active";
+    }
+
+    receive() external payable {} // Allows contract to receive payments
+}
