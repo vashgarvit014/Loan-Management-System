@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Loan Management System</h1>
+
+        <button id="connectWallet" onclick="connectWallet()">Connect Wallet</button>
+        <p id="walletAddress">Wallet: Not connected</p>
+
+        <div id="loan-status" class="status-box">Checking loan status...</div>
+
+        <div id="borrower-section">
+            <h2>Request a Loan</h2>
+            <input type="number" id="loanAmount" placeholder="Loan Amount (ETH)">
+            <input type="number" id="interestRate" placeholder="Interest Rate (%)">
+            <input type="number" id="loanDuration" placeholder="Duration (seconds)">
+            <button onclick="requestLoan()">Request Loan</button>
+
+            <h2>Repay Loan</h2>
+            <input type="number" id="repayAmount" placeholder="Repayment Amount (ETH)">
+            <button onclick="repayLoan()">Repay</button>
+        </div>
+
+        <div id="lender-section">
+            <h2>Approve Loan</h2>
+            <button onclick="approveLoan()">Approve Loan</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
